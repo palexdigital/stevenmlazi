@@ -24,6 +24,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ---- Cinematic Ambient Light Flares ---- */
+.ambient-glow-purple {
+  position: absolute;
+  width: 45vw;
+  height: 45vw;
+  max-width: 600px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.ambient-glow-pink {
+  position: absolute;
+  width: 35vw;
+  height: 35vw;
+  max-width: 500px;
+  background: radial-gradient(circle, rgba(232, 121, 249, 0.08) 0%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
 /* ---- Advanced Glassmorphic Component Matrix ---- */
 .glass-card {
   position: relative;
@@ -42,8 +65,21 @@ body {
   inset: 0;
   pointer-events: none;
   border-radius: 1.5rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 40%, rgba(168, 85, 247, 0.03) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 40%, rgba(168, 85, 247, 0.02) 100%);
   z-index: 10;
+}
+
+/* ---- Portfolio Hover Glow Modification Layer ---- */
+.portfolio-item.glass-card {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.5s ease, 
+              box-shadow 0.5s ease;
+}
+
+.portfolio-item.glass-card:hover {
+  border-color: rgba(168, 85, 247, 0.35) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
+              0 0 30px rgba(168, 85, 247, 0.15); /* Theatrical Purple aura shadow glow */
 }
 
 /* ---- Dynamic Slide-In Styling Engine ---- */
