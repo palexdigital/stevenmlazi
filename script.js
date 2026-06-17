@@ -86,6 +86,7 @@
     { id: "social", nav: "contact" },
     { id: "contact", nav: "contact" },
   ];
+  
   let currentFilter = "all";
   let visiblePortfolio = [];
   let lightboxIndex = 0;
@@ -102,22 +103,24 @@
 
     heroSlides.forEach((slide, i) => {
       const div = document.createElement("div");
-      div.className = "hero-slide" + (i === 0 ? " active" : "");
-      div.innerHTML = `<img src="${slide.src}" alt="${slide.alt}" loading="${i === 0 ? "eager" : "lazy"}">`;
+      div.className = "absolute inset-0 transition-opacity duration-[1500ms] cubic-bezier(0.4, 0, 0.2, 1) " + (i === 0 ? "opacity-100 z-10" : "opacity-0 z-0");
+      div.innerHTML = `<img src="${slide.src}" alt="${slide.alt}" class="w-full h-full object-cover" loading="${i === 0 ? "eager" : "lazy"}">`;
       container.appendChild(div);
     });
 
-    const slides = $$(".hero-slide", container);
+    const slides = container.children;
     if (slides.length < 2) return;
 
     heroTimer = setInterval(() => {
-      slides[heroIndex].classList.remove("active");
+      slides[heroIndex].classList.remove("opacity-100", "z-10");
+      slides[heroIndex].classList.add("opacity-0", "z-0");
       heroIndex = (heroIndex + 1) % slides.length;
-      slides[heroIndex].classList.add("active");
+      slides[heroIndex].classList.remove("opacity-0", "z-0");
+      slides[heroIndex].classList.add("opacity-100", "z-10");
     }, 5500);
   }
 
-  /* ---- Portfolio Grid ---- */
+  /* ---- Portfolio Grid (Updated with Glassmorphism markup tags) ---- */
   function renderPortfolio() {
     const grid = $("#portfolio-grid");
     if (!grid) return;
@@ -125,20 +128,27 @@
     grid.innerHTML = portfolioItems
       .map(
         (item, index) => `
-      <article class="portfolio-item" role="listitem" data-index="${index}" data-category="${item.category}">
-        <img src="${item.src}" alt="${item.title}" loading="lazy" width="400" height="300">
-        <div class="portfolio-item-overlay">
-          <div>
-            <p class="portfolio-item-title">${item.title}</p>
-            <p class="portfolio-item-category">${categoryLabels[item.category]}</p>
-          </div>
+      <article class="portfolio-item glass-card p-1.5 flex flex-col group cursor-pointer transition-all duration-500 ease-out hover:scale-[1.02] transform [animation:animationIn_0.8s_ease-out_both] animate-on-scroll" role="listitem" data-index="${index}" data-category="${item.category}">
+        <div class="relative overflow-hidden aspect-[4/3] rounded-[1.25rem] bg-zinc-900">
+          <img src="${item.src}" alt="${item.title}" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-30 transition-opacity"></div>
         </div>
+        <div class="px-5 py-5 flex flex-col gap-1 relative z-20">
+          <p class="text-lg font-medium font-geist tracking-tight text-white">${item.title}</p>
+          <p class="text-xs font-normal text-zinc-500">${categoryLabels[item.category]}</p>
+        </div>
+        <div class="glass-highlight"></div>
       </article>`
       )
       .join("");
 
     grid.addEventListener("click", onPortfolioClick);
     updateVisiblePortfolio();
+    
+    // Wire items to engine animations directly
+    if (window.initInViewAnimations) {
+      window.initInViewAnimations(".portfolio-item");
+    }
   }
 
   function updateVisiblePortfolio() {
@@ -148,19 +158,22 @@
     items.forEach((el) => {
       const cat = el.dataset.category;
       const show = currentFilter === "all" || cat === currentFilter;
-      el.classList.toggle("hidden", !show);
+      
       if (show) {
+        el.style.display = "flex";
         visiblePortfolio.push({
           src: portfolioItems[Number(el.dataset.index)].src,
           title: portfolioItems[Number(el.dataset.index)].title,
         });
+      } else {
+        el.style.display = "none";
       }
     });
   }
 
   function onPortfolioClick(e) {
     const item = e.target.closest(".portfolio-item");
-    if (!item || item.classList.contains("hidden")) return;
+    if (!item || item.style.display === "none") return;
 
     const index = visiblePortfolio.findIndex(
       (p) => p.src === portfolioItems[Number(item.dataset.index)].src
@@ -176,8 +189,11 @@
         if (filter === currentFilter) return;
 
         $$(".filter-btn").forEach((b) => {
-          b.classList.toggle("active", b === btn);
-          b.setAttribute("aria-selected", b === btn ? "true" : "false");
+          const isActive = b === btn;
+          b.classList.toggle("bg-white/10", isActive);
+          b.classList.toggle("text-white", isActive);
+          b.classList.toggle("text-zinc-400", !isActive);
+          b.setAttribute("aria-selected", isActive ? "true" : "false");
         });
 
         currentFilter = filter;
@@ -198,7 +214,7 @@
 
     document.addEventListener("keydown", (e) => {
       const lb = $("#lightbox");
-      if (!lb?.classList.contains("open")) return;
+      if (!lb || lb.hidden) return;
       if (e.key === "Escape") closeLightbox();
       if (e.key === "ArrowLeft") navigateLightbox(-1);
       if (e.key === "ArrowRight") navigateLightbox(1);
@@ -211,22 +227,20 @@
     if (!lb) return;
 
     lb.hidden = false;
-    requestAnimationFrame(() => {
-      lb.classList.add("open");
-      document.body.style.overflow = "hidden";
-      updateLightboxImage();
-      $("#lightbox-close")?.focus();
-    });
+    lb.classList.remove("hidden");
+    lb.classList.add("flex");
+    document.body.style.overflow = "hidden";
+    updateLightboxImage();
+    $("#lightbox-close")?.focus();
   }
 
   function closeLightbox() {
     const lb = $("#lightbox");
     if (!lb) return;
-    lb.classList.remove("open");
+    lb.classList.remove("flex");
+    lb.classList.add("hidden");
+    lb.hidden = true;
     document.body.style.overflow = "";
-    setTimeout(() => {
-      lb.hidden = true;
-    }, 350);
   }
 
   function navigateLightbox(dir) {
@@ -255,29 +269,33 @@
     window.addEventListener(
       "scroll",
       () => {
-        header?.classList.toggle("scrolled", window.scrollY > 40);
+        if (window.scrollY > 40) {
+          header?.classList.add("bg-black/60", "backdrop-blur-xl", "py-2");
+          header?.classList.remove("bg-black/20", "backdrop-blur-md");
+        } else {
+          header?.classList.remove("bg-black/60", "backdrop-blur-xl", "py-2");
+          header?.classList.add("bg-black/20", "backdrop-blur-md");
+        }
 
-        const scrollPos = window.scrollY + varHeaderOffset();
-
+        const scrollPos = window.scrollY + 120;
         let currentNav = "home";
+
         scrollSections.forEach(({ id, nav }) => {
           const el = document.getElementById(id);
           if (el && el.offsetTop <= scrollPos) currentNav = nav;
         });
 
         navLinks.forEach((link) => {
-          link.classList.toggle("active", link.dataset.section === currentNav);
+          const isActive = link.dataset.section === currentNav;
+          link.classList.toggle("text-white", isActive);
+          link.classList.toggle("text-zinc-400", !isActive);
         });
       },
       { passive: true }
     );
   }
 
-  function varHeaderOffset() {
-    return parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-h")) + 80;
-  }
-
-  /* ---- Mobile Nav ---- */
+  /* ---- Mobile Navigation Panel ---- */
   function initMobileNav() {
     const toggle = $("#nav-toggle");
     const menu = $("#nav-menu");
@@ -285,17 +303,33 @@
     toggle?.addEventListener("click", () => {
       const open = toggle.getAttribute("aria-expanded") === "true";
       toggle.setAttribute("aria-expanded", String(!open));
-      menu?.classList.toggle("open", !open);
-      document.body.style.overflow = !open ? "hidden" : "";
+      
+      if (!open) {
+        menu?.classList.remove("hidden");
+        menu?.classList.add("fixed", "inset-0", "bg-[#09090b]/95", "backdrop-blur-2xl", "flex", "flex-col", "items-center", "justify-center", "gap-8", "text-2xl", "z-40");
+        document.body.style.overflow = "hidden";
+        // Turn hamburger into absolute item over overlay
+        toggle.classList.add("fixed", "top-6", "right-6", "z-50");
+      } else {
+        closeMobileMenu(menu, toggle);
+      }
     });
 
-    $$(".nav-link").forEach((link) => {
+    $$("#nav-menu a").forEach((link) => {
       link.addEventListener("click", () => {
-        toggle?.setAttribute("aria-expanded", "false");
-        menu?.classList.remove("open");
-        document.body.style.overflow = "";
+        if (toggle?.getAttribute("aria-expanded") === "true") {
+          closeMobileMenu(menu, toggle);
+        }
       });
     });
+  }
+
+  function closeMobileMenu(menu, toggle) {
+    toggle?.setAttribute("aria-expanded", "false");
+    toggle?.classList.remove("fixed", "top-6", "right-6", "z-50");
+    menu?.classList.remove("fixed", "inset-0", "bg-[#09090b]/95", "backdrop-blur-2xl", "flex", "flex-col", "items-center", "justify-center", "gap-8", "text-2xl", "z-40");
+    menu?.classList.add("hidden");
+    document.body.style.overflow = "";
   }
 
   /* ---- Smooth anchor offset (for fixed header) ---- */
@@ -307,32 +341,20 @@
         const target = document.querySelector(id);
         if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth" });
+        
+        const headerOffset = 80;
+        const elementPosition = target.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth"
+        });
       });
     });
   }
 
-  /* ---- Scroll Reveal ---- */
-  function initReveal() {
-    const reveals = $$(".reveal");
-    if (!reveals.length) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    );
-
-    reveals.forEach((el) => observer.observe(el));
-  }
-
-  /* ---- Contact Form ---- */
+  /* ---- Contact Form Handling ---- */
   function initContactForm() {
     const form = $("#contact-form");
     form?.addEventListener("submit", (e) => {
@@ -346,13 +368,13 @@
     });
   }
 
-  /* ---- Footer year ---- */
+  /* ---- Footer active timestamp generator ---- */
   function initFooter() {
     const yearEl = $("#year");
     if (yearEl) yearEl.textContent = String(new Date().getFullYear());
   }
 
-  /* ---- Init ---- */
+  /* ---- System boot sequence initialization ---- */
   function init() {
     initHero();
     renderPortfolio();
@@ -361,7 +383,6 @@
     initScrollSpy();
     initMobileNav();
     initSmoothNav();
-    initReveal();
     initContactForm();
     initFooter();
   }
