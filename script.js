@@ -1,395 +1,292 @@
-(function () {
-  "use strict";
-
-  /* Hero slideshow images — best dramatic production shots */
-  const heroSlides = [
-    { src: "images/featured/IMG_3506.jpg", alt: "Live concert performance under dramatic blue stage lighting" },
-    { src: "images/featured/IMG_3504.jpg", alt: "Live stage production with atmospheric lighting" },
-    { src: "images/featured/IMG_3502.jpg", alt: "Concert stage environment with professional lighting design" },
-    { src: "images/featured/IMG_3505.jpg", alt: "Live event performance on stage" },
-    { src: "images/featured/IMG_3503.jpg", alt: "Theatre and concert stage production" },
-    { src: "images/featured/IMG_3507.jpg", alt: "Live entertainment production with stage lighting" },
-    { src: "images/lighting-design/789cbe1b-5dcf-4dcd-8389-026bdb4f86ed.JPG", alt: "Dynamic stage lighting design in live performance" },
-    { src: "images/lighting-design/6ec472fb-eaef-46b1-9043-96e2fe6c706b.JPG", alt: "Concert lighting atmosphere and visual impact" },
-  ];
-
-  /* Portfolio gallery — every supplied image */
-  const portfolioItems = [
-    /* Featured / live productions */
-    { src: "images/featured/IMG_3502.jpg", title: "Live Production", category: "instrument-performance" },
-    { src: "images/featured/IMG_3503.jpg", title: "Concert Stage", category: "instrument-performance" },
-    { src: "images/featured/IMG_3504.jpg", title: "Stage Performance", category: "instrument-performance" },
-    { src: "images/featured/IMG_3505.jpg", title: "Live Event", category: "instrument-performance" },
-    { src: "images/featured/IMG_3506.jpg", title: "Concert Experience", category: "instrument-performance" },
-    { src: "images/featured/IMG_3507.jpg", title: "Live Entertainment", category: "instrument-performance" },
-    /* Stage design */
-    { src: "images/stage-design/aa98b367-5a70-4856-bb3e-647f19f5ca56.JPG", title: "Stage Environment", category: "stage-design" },
-    { src: "images/stage-design/c754e5c0-6476-469b-8570-d0afe5cec142.JPG", title: "Event Stage Setup", category: "stage-design" },
-    { src: "images/stage-design/fc482797-14c8-4043-ae1a-dc497b65260b.JPG", title: "Production Stage Design", category: "stage-design" },
-    /* Instrument performance */
-    { src: "images/hero/85420451-728a-4144-9637-c1316f741566.JPG", title: "Bass Performance", category: "instrument-performance" },
-    { src: "images/instruments/2dfc1519-0d36-4dea-bda8-cddc077f70f9.JPG", title: "Live Instrumental Set", category: "instrument-performance" },
-    { src: "images/instruments/3080bb48-fa0c-4241-b79a-060194ae6587.JPG", title: "Instrument Performance", category: "instrument-performance" },
-    { src: "images/instruments/450d31ce-6ab9-4e60-a08f-809ff432ae65.JPG", title: "On Stage Performance", category: "instrument-performance" },
-    { src: "images/instruments/8a3fce47-cb7d-42cf-aaf3-ae1b5e38ffe7.JPG", title: "Live Music Performance", category: "instrument-performance" },
-    { src: "images/instruments/a26d9913-1eee-4f16-92df-eb5ac841fee1.JPG", title: "Musical Performance", category: "instrument-performance" },
-    /* Lighting design */
-    { src: "images/lighting-design/03e2f8ee-09d7-4012-b59d-6a2379f0da09.JPG", title: "Lighting Atmosphere", category: "lighting-design" },
-    { src: "images/lighting-design/12bc5961-a8bc-4d65-bd02-0d06ac3fa760.JPG", title: "Stage Wash Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/1f68049c-13ae-4f89-aae3-70f88e8b7ed4.JPG", title: "Event Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/202c8cb4-0240-473d-99aa-781651ace04a.JPG", title: "Spotlight Design", category: "lighting-design" },
-    { src: "images/lighting-design/23fff392-624f-4826-a32f-d2f54a6f0ca7.JPG", title: "Concert Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/2722c861-a154-4888-af18-f8b600e58be7.JPG", title: "Production Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/397365a5-0109-454e-bf0b-6d9a5dfa8efe.JPG", title: "Ambient Stage Light", category: "lighting-design" },
-    { src: "images/lighting-design/41bbd570-bd3d-4fc8-a6c3-fbb1fc3e780b.JPG", title: "Colour Wash", category: "lighting-design" },
-    { src: "images/lighting-design/45f61064-7660-4968-8aa8-e345db5bb922.JPG", title: "Live Show Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/505c5198-ff64-4ecc-a31c-75007b9c0ffb.JPG", title: "Theatrical Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/51b01a9f-e82f-4d0f-bacc-e3ff17d6d624.JPG", title: "Stage Beam Design", category: "lighting-design" },
-    { src: "images/lighting-design/5d567655-9005-4513-bcee-d727c913d834.JPG", title: "Performance Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/5e9096a8-48bc-44cf-9660-ae80e5cf5003.JPG", title: "Dynamic Light Cues", category: "lighting-design" },
-    { src: "images/lighting-design/6ec472fb-eaef-46b1-9043-96e2fe6c706b.JPG", title: "Concert Light Show", category: "lighting-design" },
-    { src: "images/lighting-design/789cbe1b-5dcf-4dcd-8389-026bdb4f86ed.JPG", title: "Stage Light Composition", category: "lighting-design" },
-    { src: "images/lighting-design/78ecdeb1-c134-4f43-945d-c6170578888b.JPG", title: "Mood Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/79eb4232-52eb-42b0-a343-dc260917cef7.JPG", title: "Visual Impact Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/7b7fc53c-c237-4c2d-98dc-92c4b2a23085.JPG", title: "Stage Colour Design", category: "lighting-design" },
-    { src: "images/lighting-design/7c46a795-fa26-4ea7-8a26-4da21f8ca845.JPG", title: "Live Event Illumination", category: "lighting-design" },
-    { src: "images/lighting-design/8ac81359-f659-4fa6-b908-43e03eefdc21.JPG", title: "Lighting Concept", category: "lighting-design" },
-    { src: "images/lighting-design/95db5db0-2331-4ea9-82f8-d41eec4b9910.JPG", title: "Atmospheric Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/98445061-f070-4486-85c8-803612405154.JPG", title: "Stage FX Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/9d24ffee-6dfd-4a64-b7b0-17234773f30a.JPG", title: "Show Lighting Design", category: "lighting-design" },
-    { src: "images/lighting-design/a4ffaae7-0aaa-4398-80df-8da56af49d79.JPG", title: "Production Illumination", category: "lighting-design" },
-    { src: "images/lighting-design/c32f1c58-8545-4cc5-b4cb-a1ec44a46292.JPG", title: "Creative Light Design", category: "lighting-design" },
-    { src: "images/lighting-design/c9a604e9-6d5c-4857-b7ec-ff7be1e4bb19.JPG", title: "Stage Light Drama", category: "lighting-design" },
-    { src: "images/lighting-design/ca63697d-3d6d-4766-a64b-eba04988c252.JPG", title: "Event Lightscape", category: "lighting-design" },
-    { src: "images/lighting-design/ccbef241-5f69-447f-9588-e166ddb30e37.JPG", title: "Beam Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/d080666e-d072-41e1-94c5-45c101edf4d5.JPG", title: "Colour Mix Lighting", category: "lighting-design" },
-    { src: "images/lighting-design/d2d547f5-7b7d-47c1-8472-0f29a57f07e3.JPG", title: "Stage Glow", category: "lighting-design" },
-    { src: "images/lighting-design/d343b6f7-6c8d-4acf-bab4-f2997c2d743b.JPG", title: "Performance Illumination", category: "lighting-design" },
-    { src: "images/lighting-design/e18d2f25-edb1-4af3-b48a-9cf891d94b8e.JPG", title: "Live Lighting Cues", category: "lighting-design" },
-    { src: "images/lighting-design/e3dbb5c8-3947-4de7-85e7-353569ae8370.JPG", title: "Stage Ambience", category: "lighting-design" },
-    { src: "images/lighting-design/e560038c-d0bf-4349-a8f4-9b809103f1d6.JPG", title: "Concert Illumination", category: "lighting-design" },
-    { src: "images/lighting-design/ea86fad3-1997-4fac-beb7-052cd402e63b.JPG", title: "Lighting Visual Impact", category: "lighting-design" },
-  ];
-
-  const categoryLabels = {
-    "stage-design": "Stage Design",
-    "lighting-design": "Lighting Design",
-    "instrument-performance": "Instrument Performance",
-  };
-
-  const scrollSections = [
-    { id: "home", nav: "home" },
-    { id: "about", nav: "about" },
-    { id: "services", nav: "services" },
-    { id: "featured", nav: "portfolio" },
-    { id: "portfolio", nav: "portfolio" },
-    { id: "social", nav: "contact" },
-    { id: "contact", nav: "contact" },
-  ];
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-zinc-950 text-zinc-100 selection:bg-purple-500/30 selection:text-white">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steven Mlazi | Production, Lighting & Stage Design Portfolio</title>
+  <meta name="description" content="Professional portfolio of Steven Mlazi specializing in atmospheric stage design, live event illumination, and technical production environments.">
   
-  let currentFilter = "all";
-  let visiblePortfolio = [];
-  let lightboxIndex = 0;
-  let heroIndex = 0;
-  let heroTimer = null;
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="relative min-h-full font-sans antialiased bg-zinc-950 overflow-x-hidden">
 
-  const $ = (sel, ctx = document) => ctx.querySelector(sel);
-  const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+  <a href="#portfolio" class="absolute left-6 top-[-100%] focus:top-6 z-[10000] bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300">
+    Skip to Portfolio Content
+  </a>
 
-  /* ---- Hero Slideshow ---- */
-  function initHero() {
-    const container = $("#hero-slideshow");
-    if (!container) return;
+  <header id="site-header" class="fixed top-0 left-0 right-0 h-20 z-50 transition-all duration-500 bg-black/20 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+      <a href="#home" class="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-400 to-pink-500 uppercase">
+        Steven Mlazi
+      </a>
 
-    heroSlides.forEach((slide, i) => {
-      const div = document.createElement("div");
-      div.className = "absolute inset-0 transition-opacity duration-[1500ms] cubic-bezier(0.4, 0, 0.2, 1) " + (i === 0 ? "opacity-100 z-10" : "opacity-0 z-0");
-      div.innerHTML = `<img src="${slide.src}" alt="${slide.alt}" class="w-full h-full object-cover" loading="${i === 0 ? "eager" : "lazy"}">`;
-      container.appendChild(div);
-    });
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#home" data-section="home" class="nav-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors py-1 relative">Home</a>
+        <a href="#about" data-section="about" class="nav-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors py-1 relative">About</a>
+        <a href="#services" data-section="services" class="nav-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors py-1 relative">Services</a>
+        <a href="#portfolio" data-section="portfolio" class="nav-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors py-1 relative">Portfolio</a>
+        <a href="#contact" data-section="contact" class="nav-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors py-1 relative">Contact</a>
+      </nav>
 
-    const slides = container.children;
-    if (slides.length < 2) return;
+      <button id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded">
+        <span class="w-6 h-0.5 bg-white transition-transform duration-300"></span>
+        <span class="w-6 h-0.5 bg-white transition-opacity duration-300"></span>
+        <span class="w-6 h-0.5 bg-white transition-transform duration-300"></span>
+      </button>
+    </div>
+  </header>
 
-    heroTimer = setInterval(() => {
-      slides[heroIndex].classList.remove("opacity-100", "z-10");
-      slides[heroIndex].classList.add("opacity-0", "z-0");
-      heroIndex = (heroIndex + 1) % slides.length;
-      slides[heroIndex].classList.remove("opacity-0", "z-0");
-      slides[heroIndex].classList.add("opacity-100", "z-10");
-    }, 5500);
-  }
+  <nav id="nav-menu" class="hidden" aria-hidden="true">
+    <a href="#home" class="text-zinc-400 hover:text-white font-medium uppercase tracking-widest">Home</a>
+    <a href="#about" class="text-zinc-400 hover:text-white font-medium uppercase tracking-widest">About</a>
+    <a href="#services" class="text-zinc-400 hover:text-white font-medium uppercase tracking-widest">Services</a>
+    <a href="#portfolio" class="text-zinc-400 hover:text-white font-medium uppercase tracking-widest">Portfolio</a>
+    <a href="#contact" class="text-zinc-400 hover:text-white font-medium uppercase tracking-widest">Contact</a>
+  </nav>
 
-  /* ---- Portfolio Grid (Updated with Glassmorphism markup tags) ---- */
-  function renderPortfolio() {
-    const grid = $("#portfolio-grid");
-    if (!grid) return;
-
-    grid.innerHTML = portfolioItems
-      .map(
-        (item, index) => `
-      <article class="portfolio-item glass-card p-1.5 flex flex-col group cursor-pointer transition-all duration-500 ease-out hover:scale-[1.02] transform [animation:animationIn_0.8s_ease-out_both] animate-on-scroll" role="listitem" data-index="${index}" data-category="${item.category}">
-        <div class="relative overflow-hidden aspect-[4/3] rounded-[1.25rem] bg-zinc-900">
-          <img src="${item.src}" alt="${item.title}" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700 ease-out">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-30 transition-opacity"></div>
-        </div>
-        <div class="px-5 py-5 flex flex-col gap-1 relative z-20">
-          <p class="text-lg font-medium font-geist tracking-tight text-white">${item.title}</p>
-          <p class="text-xs font-normal text-zinc-500">${categoryLabels[item.category]}</p>
-        </div>
-        <div class="glass-highlight"></div>
-      </article>`
-      )
-      .join("");
-
-    grid.addEventListener("click", onPortfolioClick);
-    updateVisiblePortfolio();
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <div id="hero-slideshow" class="absolute inset-0 w-full h-full"></div>
     
-    // Wire items to engine animations directly
-    if (window.initInViewAnimations) {
-      window.initInViewAnimations(".portfolio-item");
-    }
-  }
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-zinc-950 z-20"></div>
 
-  function updateVisiblePortfolio() {
-    const items = $$(".portfolio-item");
-    visiblePortfolio = [];
-
-    items.forEach((el) => {
-      const cat = el.dataset.category;
-      const show = currentFilter === "all" || cat === currentFilter;
+    <div class="relative z-30 max-w-4xl mx-auto px-6 text-center pt-24 pb-16 flex flex-col items-center">
+      <span class="text-[10px] md:text-xs font-bold tracking-[0.3em] text-fuchsia-400 uppercase mb-4 [animation:animationIn_0.6s_ease-out]">
+        Live Entertainment Production Specialist
+      </span>
+      <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-white leading-none mb-6 [animation:animationIn_0.8s_ease-out_both]">
+        DESIGNING LUMINANCE.
+      </h1>
+      <p class="text-sm sm:text-lg md:text-xl text-zinc-400 font-light tracking-wide max-w-xl mx-auto mb-10 [animation:animationIn_1s_ease-out_both]">
+        Crafting atmospheric environments, dynamic live tour lighting, and premium concert experiences.
+      </p>
       
-      if (show) {
-        el.style.display = "flex";
-        visiblePortfolio.push({
-          src: portfolioItems[Number(el.dataset.index)].src,
-          title: portfolioItems[Number(el.dataset.index)].title,
-        });
-      } else {
-        el.style.display = "none";
-      }
-    });
-  }
+      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center [animation:animationIn_1.2s_ease-out_both]">
+        <a href="#portfolio" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-xs uppercase tracking-widest rounded-full shadow-[0_4px_20px_rgba(168,85,247,0.3)] hover:shadow-[0_8px_30px_rgba(168,85,247,0.5)] transition-all duration-300 transform hover:-translate-y-0.5">
+          View Live Portfolio
+        </a>
+        <a href="#contact" class="px-8 py-4 border border-zinc-800 bg-zinc-900/40 backdrop-blur-sm text-white font-semibold text-xs uppercase tracking-widest rounded-full hover:bg-zinc-800/60 transition-all duration-300 transform hover:-translate-y-0.5">
+          Get In Touch
+        </a>
+      </div>
+    </div>
 
-  function onPortfolioClick(e) {
-    const item = e.target.closest(".portfolio-item");
-    if (!item || item.style.display === "none") return;
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-2">
+      <span class="text-[9px] tracking-[0.2em] uppercase text-zinc-500 font-semibold">Scroll</span>
+      <div class="w-[1px] h-12 bg-gradient-to-b from-purple-500 to-transparent hero-scroll-line"></div>
+    </div>
+  </section>
 
-    const index = visiblePortfolio.findIndex(
-      (p) => p.src === portfolioItems[Number(item.dataset.index)].src
-    );
-    if (index >= 0) openLightbox(index);
-  }
+  <section id="about" class="relative py-24 md:py-36 bg-zinc-900/30 overflow-hidden">
+    <div class="ambient-glow-purple top-0 left-[-10%]"></div>
 
-  /* ---- Portfolio Filters ---- */
-  function initFilters() {
-    $$(".filter-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const filter = btn.dataset.filter;
-        if (filter === currentFilter) return;
-
-        $$(".filter-btn").forEach((b) => {
-          const isActive = b === btn;
-          b.classList.toggle("bg-white/10", isActive);
-          b.classList.toggle("text-white", isActive);
-          b.classList.toggle("text-zinc-400", !isActive);
-          b.setAttribute("aria-selected", isActive ? "true" : "false");
-        });
-
-        currentFilter = filter;
-        updateVisiblePortfolio();
-      });
-    });
-  }
-
-  /* ---- Lightbox ---- */
-  function initLightbox() {
-    $("#lightbox-close")?.addEventListener("click", closeLightbox);
-    $("#lightbox-prev")?.addEventListener("click", () => navigateLightbox(-1));
-    $("#lightbox-next")?.addEventListener("click", () => navigateLightbox(1));
-
-    $("#lightbox")?.addEventListener("click", (e) => {
-      if (e.target.id === "lightbox") closeLightbox();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      const lb = $("#lightbox");
-      if (!lb || lb.hidden) return;
-      if (e.key === "Escape") closeLightbox();
-      if (e.key === "ArrowLeft") navigateLightbox(-1);
-      if (e.key === "ArrowRight") navigateLightbox(1);
-    });
-  }
-
-  function openLightbox(index) {
-    lightboxIndex = index;
-    const lb = $("#lightbox");
-    if (!lb) return;
-
-    lb.hidden = false;
-    lb.classList.remove("hidden");
-    lb.classList.add("flex");
-    document.body.style.overflow = "hidden";
-    updateLightboxImage();
-    $("#lightbox-close")?.focus();
-  }
-
-  function closeLightbox() {
-    const lb = $("#lightbox");
-    if (!lb) return;
-    lb.classList.remove("flex");
-    lb.classList.add("hidden");
-    lb.hidden = true;
-    document.body.style.overflow = "";
-  }
-
-  function navigateLightbox(dir) {
-    if (!visiblePortfolio.length) return;
-    lightboxIndex = (lightboxIndex + dir + visiblePortfolio.length) % visiblePortfolio.length;
-    updateLightboxImage();
-  }
-
-  function updateLightboxImage() {
-    const item = visiblePortfolio[lightboxIndex];
-    if (!item) return;
-    const img = $("#lightbox-img");
-    const cap = $("#lightbox-caption");
-    if (img) {
-      img.src = item.src;
-      img.alt = item.title;
-    }
-    if (cap) cap.textContent = item.title;
-  }
-
-  /* ---- Sticky Nav & Active Section ---- */
-  function initScrollSpy() {
-    const header = $("#site-header");
-    const navLinks = $$(".nav-link");
-
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (window.scrollY > 40) {
-          header?.classList.add("bg-black/60", "backdrop-blur-xl", "py-2");
-          header?.classList.remove("bg-black/20", "backdrop-blur-md");
-        } else {
-          header?.classList.remove("bg-black/60", "backdrop-blur-xl", "py-2");
-          header?.classList.add("bg-black/20", "backdrop-blur-md");
-        }
-
-        const scrollPos = window.scrollY + 120;
-        let currentNav = "home";
-
-        scrollSections.forEach(({ id, nav }) => {
-          const el = document.getElementById(id);
-          if (el && el.offsetTop <= scrollPos) currentNav = nav;
-        });
-
-        navLinks.forEach((link) => {
-          const isActive = link.dataset.section === currentNav;
-          link.classList.toggle("text-white", isActive);
-          link.classList.toggle("text-zinc-400", !isActive);
-        });
-      },
-      { passive: true }
-    );
-  }
-
-  /* ---- Mobile Navigation Panel ---- */
-  function initMobileNav() {
-    const toggle = $("#nav-toggle");
-    const menu = $("#nav-menu");
-
-    toggle?.addEventListener("click", () => {
-      const open = toggle.getAttribute("aria-expanded") === "true";
-      toggle.setAttribute("aria-expanded", String(!open));
-      
-      if (!open) {
-        menu?.classList.remove("hidden");
-        menu?.classList.add("fixed", "inset-0", "bg-[#09090b]/95", "backdrop-blur-2xl", "flex", "flex-col", "items-center", "justify-center", "gap-8", "text-2xl", "z-40");
-        document.body.style.overflow = "hidden";
-        // Turn hamburger into absolute item over overlay
-        toggle.classList.add("fixed", "top-6", "right-6", "z-50");
-      } else {
-        closeMobileMenu(menu, toggle);
-      }
-    });
-
-    $$("#nav-menu a").forEach((link) => {
-      link.addEventListener("click", () => {
-        if (toggle?.getAttribute("aria-expanded") === "true") {
-          closeMobileMenu(menu, toggle);
-        }
-      });
-    });
-  }
-
-  function closeMobileMenu(menu, toggle) {
-    toggle?.setAttribute("aria-expanded", "false");
-    toggle?.classList.remove("fixed", "top-6", "right-6", "z-50");
-    menu?.classList.remove("fixed", "inset-0", "bg-[#09090b]/95", "backdrop-blur-2xl", "flex", "flex-col", "items-center", "justify-center", "gap-8", "text-2xl", "z-40");
-    menu?.classList.add("hidden");
-    document.body.style.overflow = "";
-  }
-
-  /* ---- Smooth anchor offset (for fixed header) ---- */
-  function initSmoothNav() {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", (e) => {
-        const id = anchor.getAttribute("href");
-        if (!id || id === "#") return;
-        const target = document.querySelector(id);
-        if (!target) return;
-        e.preventDefault();
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
-        const headerOffset = 80;
-        const elementPosition = target.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        <div class="lg:col-span-5 animate-on-scroll">
+          <div class="relative aspect-[4/5] rounded-3xl overflow-hidden glass-card p-2">
+            <div class="w-full h-full rounded-[1.25rem] overflow-hidden bg-zinc-900">
+              <img src="images/featured/IMG_3506.jpg" alt="Steven Mlazi controlling production setup console layout" class="w-full h-full object-cover grayscale opacity-75 hover:grayscale-0 hover:scale-105 transition-all duration-700 ease-out">
+            </div>
+            <div class="glass-highlight"></div>
+          </div>
+        </div>
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth"
-        });
-      });
-    });
-  }
+        <div class="lg:col-span-7 flex flex-col gap-6 animate-on-scroll">
+          <div>
+            <span class="text-[10px] font-bold tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 uppercase block mb-2">
+              The Creative Director Behind The Desk
+            </span>
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+              Designing Visual Soundscapes.
+            </h2>
+          </div>
+          <p class="text-base md:text-lg text-zinc-300 leading-relaxed font-light">
+            I bridges the gap between mechanical stage engineering and artistic live expression. With over years of experience tuning fixtures, balancing colour fields, and directing technical stages, I shape how audiences experience live sound structures.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Every room has a pulse. Whether it's high-contrast dynamic beams for live rock acts or elegant ambient colour washes for intricate architectural installations, my design frameworks establish depth, control memory, and complement sensory output performance arrays flawlessly.
+          </p>
+          
+          <ul class="flex flex-wrap gap-2.5 mt-4">
+            <li class="text-[10px] font-bold uppercase tracking-wider px-4 py-2 border border-purple-500/20 bg-purple-500/5 rounded-full text-zinc-200">Stage Architecture</li>
+            <li class="text-[10px] font-bold uppercase tracking-wider px-4 py-2 border border-purple-500/20 bg-purple-500/5 rounded-full text-zinc-200">DMX Programming</li>
+            <li class="text-[10px] font-bold uppercase tracking-wider px-4 py-2 border border-purple-500/20 bg-purple-500/5 rounded-full text-zinc-200">Live Show Execution</li>
+            <li class="text-[10px] font-bold uppercase tracking-wider px-4 py-2 border border-purple-500/20 bg-purple-500/5 rounded-full text-zinc-200">Atmospheric Engineering</li>
+          </ul>
+        </div>
 
-  /* ---- Contact Form Handling ---- */
-  function initContactForm() {
-    const form = $("#contact-form");
-    form?.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const name = $("#name")?.value.trim() || "";
-      const email = $("#email")?.value.trim() || "";
-      const message = $("#message")?.value.trim() || "";
-      const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-      window.location.href = `mailto:steventshefati@outlook.com?subject=${subject}&body=${body}`;
-    });
-  }
+      </div>
+    </div>
+  </section>
 
-  /* ---- Footer active timestamp generator ---- */
-  function initFooter() {
-    const yearEl = $("#year");
-    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-  }
+  <section id="services" class="relative py-24 md:py-36 bg-zinc-950 overflow-hidden">
+    <div class="ambient-glow-pink bottom-[-10%] right-[-10%]"></div>
 
-  /* ---- System boot sequence initialization ---- */
-  function init() {
-    initHero();
-    renderPortfolio();
-    initFilters();
-    initLightbox();
-    initScrollSpy();
-    initMobileNav();
-    initSmoothNav();
-    initContactForm();
-    initFooter();
-  }
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 md:mb-24 animate-on-scroll">
+        <span class="text-[10px] font-bold tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 uppercase block mb-2">Capabilities Matrix</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">Production Solutions</h2>
+      </div>
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
-})();
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        
+        <article class="glass-card p-8 md:p-10 flex flex-col gap-6 animate-on-scroll">
+          <div class="w-12 h-12 text-fuchsia-400 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-full h-full">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold tracking-tight text-white mb-3">Lighting Design</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">Comprehensive cue programming, beam modeling, and layout design calibrated precisely for massive open arenas or close intimate configurations.</p>
+          </div>
+          <div class="glass-highlight"></div>
+        </article>
+
+        <article class="glass-card p-8 md:p-10 flex flex-col gap-6 animate-on-scroll">
+          <div class="w-12 h-12 text-fuchsia-400 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-full h-full">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.5-3h15m-15-9h15" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold tracking-tight text-white mb-3">Stage Scenography</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">Structural design configurations arranging stage set objects, dynamic digital set pieces, and lighting arrays to map maximum production space geometry.</p>
+          </div>
+          <div class="glass-highlight"></div>
+        </article>
+
+        <article class="glass-card p-8 md:p-10 flex flex-col gap-6 animate-on-scroll">
+          <div class="w-12 h-12 text-fuchsia-400 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-full h-full">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold tracking-tight text-white mb-3">Live Integration</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">Flawless, direct manual control oversight for variable live programs. On-the-fly timing adjustments built to execute alongside performance changes.</p>
+          </div>
+          <div class="glass-highlight"></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="relative py-24 md:py-36 bg-zinc-900/10 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 animate-on-scroll">
+        <div>
+          <span class="text-[10px] font-bold tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 uppercase block mb-2">Curated Project Galleries</span>
+          <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">Production Works</h2>
+        </div>
+        
+        <div class="flex flex-wrap gap-2 portfolio-filters" role="tablist">
+          <button data-filter="all" role="tab" aria-selected="true" class="filter-btn text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-zinc-800 bg-white/10 text-white transition-all duration-300">All Work</button>
+          <button data-filter="lighting-design" role="tab" aria-selected="false" class="filter-btn text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300">Lighting</button>
+          <button data-filter="stage-design" role="tab" aria-selected="false" class="filter-btn text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300">Stage Sets</button>
+          <button data-filter="instrument-performance" role="tab" aria-selected="false" class="filter-btn text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300">Performance</button>
+        </div>
+      </div>
+
+      <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" role="list"></div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="relative py-24 md:py-36 bg-zinc-950 overflow-hidden">
+    <div class="ambient-glow-purple top-1/3 right-[-10%]"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <div class="lg:col-span-5 flex flex-col gap-8 animate-on-scroll">
+          <div>
+            <span class="text-[10px] font-bold tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 uppercase block mb-2">Project Intake Channel</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">Let's Ignite Your Stage.</h2>
+          </div>
+          <p class="text-sm md:text-base text-zinc-400 leading-relaxed font-light">
+            Planning a national tour cycle, an corporate visual installation, or need precise technical operation mapping setup support? File your system telemetry criteria here to initialize a consultation window.
+          </p>
+
+          <div class="flex flex-col gap-4">
+            <div>
+              <span class="text-[9px] uppercase font-bold tracking-wider text-fuchsia-400 block mb-1">Direct Link Pipeline</span>
+              <a href="mailto:steventshefati@outlook.com" class="text-lg text-white font-medium hover:text-purple-400 transition-colors">steventshefati@outlook.com</a>
+            </div>
+            
+            <div class="mt-4">
+              <a href="https://wa.me/27763704257" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all shadow-[0_4px_20px_rgba(16,185,129,0.2)]">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.456L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.863-9.864.001-2.636-1.023-5.115-2.884-6.978C16.584 1.9 14.108.879 11.474.879c-5.443 0-9.869 4.42-9.873 9.863-.001 1.731.464 3.42 1.345 4.925l-.993 3.623 3.704-.971zm12.167-7.61c-.302-.15-1.787-.882-2.063-.982-.276-.1-.477-.15-.677.15-.199.299-.775.982-.95 1.183-.175.2-.351.224-.652.074-.302-.15-1.274-.469-2.427-1.496-.897-.8-1.502-1.788-1.678-2.088-.175-.302-.019-.465.131-.615.136-.135.302-.35.453-.524.151-.174.2-.299.301-.498.101-.2.05-.375-.025-.524-.075-.15-.677-1.633-.927-2.233-.243-.585-.49-.507-.677-.516-.174-.008-.375-.01-.576-.01-.2 0-.527.075-.803.375-.276.3-1.054 1.03-1.054 2.515s1.079 2.917 1.229 3.116c.15.2 2.123 3.242 5.143 4.545.718.311 1.279.497 1.717.637.722.23 1.378.198 1.9.12.58-.087 1.787-.73 2.038-1.436.25-.706.25-1.313.175-1.437-.075-.124-.275-.199-.576-.35z"/>
+                </svg>
+                WhatsApp Connection
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 w-full animate-on-scroll">
+          <form id="contact-form" class="glass-card p-6 sm:p-10 flex flex-col gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-2">
+                <label for="name" class="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Identity Name</label>
+                <input type="text" id="name" required placeholder="e.g. John Doe" class="w-full bg-zinc-950/60 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="email" class="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Digital Email Pipeline</label>
+                <input type="email" id="email" required placeholder="name@domain.com" class="w-full bg-zinc-950/60 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
+              </div>
+            </div>
+            
+            <div class="flex flex-col gap-2">
+              <label for="message" class="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Project Telemetry Specifications</label>
+              <textarea id="message" required rows="5" placeholder="Outline your technical production timeline context..." class="w-full bg-zinc-950/60 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all resize-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs uppercase tracking-widest rounded-xl hover:opacity-95 shadow-[0_4px_25px_rgba(168,85,247,0.25)] transition-all cursor-pointer">
+              Launch Request Transmission
+            </button>
+            <div class="glass-highlight"></div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-zinc-900 bg-zinc-950 py-12 relative z-20">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div>
+        <p class="text-sm font-bold text-white tracking-wide">Steven Mlazi</p>
+        <p class="text-xs text-zinc-500 mt-1">Atmospheric Production Architecture &copy; <span id="year"></span></p>
+      </div>
+      
+      <div class="flex gap-6 text-xs font-medium text-zinc-500">
+        <a href="#home" class="hover:text-white transition-colors">Top</a>
+        <a href="#about" class="hover:text-white transition-colors">Bio</a>
+        <a href="#services" class="hover:text-white transition-colors">Matrix</a>
+        <a href="#portfolio" class="hover:text-white transition-colors">Works</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="lightbox" hidden class="hidden fixed inset-0 z-[10000] bg-black/95 backdrop-blur-xl flex-col items-center justify-center p-4 sm:p-8 animate-fade-in" role="dialog" aria-modal="true">
+    <button id="lightbox-close" aria-label="Terminate interface window display view" class="absolute top-6 right-6 text-zinc-400 hover:text-white text-3xl p-3 focus:outline-none cursor-pointer">&times;</button>
+    
+    <button id="lightbox-prev" aria-label="Preceding asset view context step" class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white text-4xl p-4 focus:outline-none cursor-pointer">&lsaquo;</button>
+    <button id="lightbox-next" aria-label="Succeeding asset view context step" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white text-4xl p-4 focus:outline-none cursor-pointer">&rsaquo;</button>
+    
+    <figure class="max-w-5xl max-h-[80vh] flex flex-col items-center justify-center">
+      <img id="lightbox-img" src="" alt="" class="max-h-[70vh] w-auto object-contain rounded-lg shadow-2xl border border-zinc-800">
+      <figcaption id="lightbox-caption" class="text-zinc-400 text-sm font-medium tracking-tight mt-4 text-center"></figcaption>
+    </figure>
+  </div>
+
+  <script src="portfolio.js"></script>
+</body>
+</html>
