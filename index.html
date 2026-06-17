@@ -1,432 +1,436 @@
 <!DOCTYPE html>
-<html lang="en" class="antialiased">
+<html lang="en" class="h-full bg-zinc-950 text-zinc-100 selection:bg-purple-500/30 selection:text-white">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Steven Mlazi — Creative Stage &amp; Lighting Professional. Stage design, lighting design, and instrumental performance for live events, theatre, and concerts.">
-  <meta name="author" content="Steven Mlazi">
-  <meta name="theme-color" content="#09090b">
-  <title>Steven Mlazi | Creative Stage &amp; Lighting Professional</title>
+  <title>Steven Mlazi | Production, Lighting & Stage Design Portfolio</title>
+  <meta name="description" content="Professional portfolio of Steven Mlazi specializing in atmospheric stage design, live event illumination, and technical production environments.">
   
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    /* Global scrollbar hiding resets */
-    html, body {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    html::-webkit-scrollbar, body::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .font-geist { font-family: 'Geist', sans-serif !important; }
-
-    /* Glassmorphism system card designs */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8),
-                  inset 0 1px 1px rgba(255, 255, 255, 0.1),
-                  inset 0 -1px 1px rgba(0, 0, 0, 0.3);
-    }
-    .glass-highlight {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.03) 100%);
-      border-radius: inherit;
-      z-index: 10;
-      pointer-events: none;
-    }
-
-    /* Scroll entrance keyframe engines */
-    @keyframes animationIn {
-      0% { opacity: 0; transform: translateY(30px); filter: blur(8px); }
-      100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
-    }
-    .animate-on-scroll { animation-play-state: paused !important; }
-    .animate-on-scroll.animate { animation-play-state: running !important; }
-  </style>
-
-  <script>
-    (function () {
-      if (!window.__inViewIO) {
-        window.__inViewIO = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("animate");
-              window.__inViewIO.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.15, rootMargin: "0px 0px -5% 0px" });
-      }
-      window.initInViewAnimations = function (selector = ".animate-on-scroll") {
-        document.querySelectorAll(selector).forEach((el) => { window.__inViewIO.observe(el); });
-      };
-      document.addEventListener("DOMContentLoaded", () => initInViewAnimations());
-    })();
-  </script>
+  <link rel="stylesheet" href="styles.css">
 </head>
+<body class="relative min-h-full font-sans antialiased bg-zinc-950 overflow-x-hidden">
 
-<body class="min-h-screen overflow-x-hidden selection:bg-white/10 font-sans bg-[#09090b] relative text-zinc-300" style="font-family: 'Inter', sans-serif;">
+  <a href="#portfolio" class="absolute left-6 top-[-100%] focus:top-6 z-[10000] bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold px-6 py-3 rounded-full transition-all duration-300">
+    Skip to Portfolio Content
+  </a>
 
-  <a class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-zinc-900 text-white px-4 py-2 rounded-full border border-zinc-700 z-[100]" href="#main">Skip to content</a>
-
-  <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center">
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-[60vh] bg-gradient-to-b via-zinc-500/5 to-transparent z-10 from-zinc-400/30"></div>
-    <div class="absolute top-[10%] left-1/2 -translate-x-1/2 w-48 h-56 blur-[100px] rounded-full z-10 bg-zinc-400/10"></div>
-    <div class="absolute -top-[50vh] w-[150vw] h-[100vh] rounded-[100%] border border-zinc-500/10 shadow-[0_0_120px_rgba(161,161,170,0.1)]"></div>
-    <div class="absolute top-[20vh] w-[120vw] h-[120vh] rounded-[100%] border shadow-[0_0_80px_rgba(161,161,170,0.05)] border-zinc-600/5"></div>
-    <div class="absolute top-[30%] left-[15%] w-64 h-64 bg-zinc-500/5 blur-[80px] rounded-full"></div>
-    <div class="absolute bottom-[20%] right-[20%] w-80 h-80 blur-[100px] rounded-full bg-zinc-400/5"></div>
-  </div>
-
-  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 backdrop-blur-md border-b border-white/5 bg-black/20" id="site-header">
-    <nav class="max-w-7xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between" aria-label="Main navigation">
-      <a href="#home" class="text-xl font-medium font-geist tracking-tight text-white flex items-center gap-2 hover:opacity-80 transition-opacity" aria-label="Steven Mlazi — Home">
-        <iconify-icon icon="solar:play-bold" class="rotate-90 text-white flex items-center justify-center" width="18"></iconify-icon>
-        SM
+  <header id="site-header" class="fixed top-0 left-0 right-0 h-20 z-50 transition-all duration-500 bg-black/20 backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-6 h-full flex items-center justify-between">
+      <a href="#home" class="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-fuchsia-400 to-pink-500 uppercase">
+        Steven Mlazi
       </a>
-      
-      <button class="md:hidden text-zinc-400 hover:text-white flex flex-col gap-1.5 p-2" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
-        <span class="w-6 h-0.5 bg-current transition-all duration-300"></span>
-        <span class="w-6 h-0.5 bg-current transition-all duration-300"></span>
-        <span class="w-6 h-0.5 bg-current transition-all duration-300"></span>
-      </button>
 
-      <ul class="hidden md:flex items-center gap-10 text-sm font-normal text-zinc-400" id="nav-menu">
-        <li><a href="#home" class="nav-link active text-white hover:text-white transition-colors" data-section="home">Home</a></li>
-        <li><a href="#about" class="nav-link hover:text-zinc-200 transition-colors" data-section="about">About</a></li>
-        <li><a href="#services" class="nav-link hover:text-zinc-200 transition-colors" data-section="services">Services</a></li>
-        <li><a href="#portfolio" class="nav-link hover:text-zinc-200 transition-colors" data-section="portfolio">Portfolio</a></li>
-        <li><a href="#contact" class="nav-link hover:text-zinc-200 transition-colors" data-section="contact">Contact</a></li>
-      </ul>
-    </nav>
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="#home" data-section="home" class="nav-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors py-1 relative">Home</a>
+        <a href="#about" data-section="about" class="nav-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors py-1 relative">About</a>
+        <a href="#services" data-section="services" class="nav-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors py-1 relative">Services</a>
+        <a href="#portfolio" data-section="portfolio" class="nav-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors py-1 relative">Portfolio</a>
+        <a href="#contact" data-section="contact" class="nav-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors py-1 relative">Contact</a>
+      </nav>
+
+      <button id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" class="md:hidden flex flex-col gap-1.5 p-2 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded cursor-pointer">
+        <span class="w-6 h-0.5 bg-white transition-transform duration-300"></span>
+        <span class="w-6 h-0.5 bg-white transition-opacity duration-300"></span>
+        <span class="w-6 h-0.5 bg-white transition-transform duration-300"></span>
+      </button>
+    </div>
   </header>
 
-  <main id="main" class="relative z-10">
-    
-    <section class="min-h-screen flex items-center justify-center relative px-6 overflow-hidden pt-20" id="home" aria-label="Introduction">
-      <div class="absolute inset-0 z-0 bg-cover bg-center brightness-[0.25]" id="hero-slideshow" aria-hidden="true"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-black/40 z-10"></div>
+  <nav id="nav-menu" class="hidden fixed inset-0 top-20 bg-black/95 backdrop-blur-2xl z-40 flex flex-col items-center justify-center gap-8 md:hidden" aria-hidden="true">
+    <a href="#home" class="mobile-nav-link text-zinc-400 hover:text-white text-lg font-medium uppercase tracking-widest">Home</a>
+    <a href="#about" class="mobile-nav-link text-zinc-400 hover:text-white text-lg font-medium uppercase tracking-widest">About</a>
+    <a href="#services" class="mobile-nav-link text-zinc-400 hover:text-white text-lg font-medium uppercase tracking-widest">Services</a>
+    <a href="#portfolio" class="mobile-nav-link text-zinc-400 hover:text-white text-lg font-medium uppercase tracking-widest">Portfolio</a>
+    <a href="#contact" class="mobile-nav-link text-zinc-400 hover:text-white text-lg font-medium uppercase tracking-widest">Contact</a>
+  </nav>
+
+  <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/70 to-zinc-950 z-20"></div>
+
+    <div class="relative z-30 max-w-4xl mx-auto px-6 text-center pt-24 pb-16 flex flex-col items-center">
+      <span class="text-[10px] md:text-xs font-bold tracking-[0.3em] text-fuchsia-400 uppercase mb-4 [animation:animationIn_0.6s_ease-out]">
+        Live Entertainment Production Specialist
+      </span>
+      <h1 class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter text-white leading-none mb-6 [animation:animationIn_0.8s_ease-out_both]">
+        DESIGNING LUMINANCE.
+      </h1>
+      <p class="text-sm sm:text-lg md:text-xl text-zinc-400 font-light tracking-wide max-w-xl mx-auto mb-10 [animation:animationIn_1s_ease-out_both]">
+        Crafting atmospheric environments, dynamic live tour lighting, and premium concert experiences.
+      </p>
       
-      <div class="max-w-4xl mx-auto text-center relative z-20 flex flex-col items-center">
-        <p class="text-xs uppercase tracking-[0.2em] font-medium text-zinc-500 mb-4 [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">Creative Portfolio</p>
-        <h1 class="text-5xl sm:text-7xl lg:text-8xl font-medium tracking-tight font-geist text-white/95 leading-[1.05] mb-6 [animation:animationIn_0.8s_ease-out_0.2s_both] animate-on-scroll">
-          Steven Mlazi
-        </h1>
-        <p class="text-base sm:text-xl font-normal text-zinc-400 max-w-xl mx-auto mb-10 [animation:animationIn_0.8s_ease-out_0.3s_both] animate-on-scroll">
-          Creative Stage &amp; Lighting Professional
-        </p>
+      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center [animation:animationIn_1.2s_ease-out_both]">
+        <a href="#portfolio" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-xs uppercase tracking-widest rounded-full shadow-[0_4px_20px_rgba(168,85,247,0.3)] hover:shadow-[0_8px_30px_rgba(168,85,247,0.5)] transition-all duration-300 transform hover:-translate-y-0.5 text-center">
+          View Live Portfolio
+        </a>
+        <a href="#contact" class="px-8 py-4 border border-zinc-800 bg-zinc-900/40 backdrop-blur-sm text-white font-semibold text-xs uppercase tracking-widest rounded-full hover:bg-zinc-800/60 transition-all duration-300 transform hover:-translate-y-0.5 text-center">
+          Get In Touch
+        </a>
+      </div>
+    </div>
+
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center gap-2">
+      <span class="text-[9px] tracking-[0.2em] uppercase text-zinc-500 font-semibold">Scroll</span>
+      <div class="w-[1px] h-12 bg-gradient-to-b from-purple-500 to-transparent hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <section id="about" class="relative py-24 md:py-36 bg-zinc-900/30 overflow-hidden">
+    <div class="ambient-glow-purple top-0 left-[-10%]"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         
-        <div class="flex flex-wrap items-center justify-center gap-4 [animation:animationIn_0.8s_ease-out_0.4s_both] animate-on-scroll">
-          <button onclick="location.href='#portfolio'" class="group relative inline-flex min-w-[160px] cursor-pointer transition-all duration-[1000ms] ease-[cubic-bezier(0.15,0.83,0.66,1)] hover:-translate-y-[3px] shadow-2xl overflow-hidden font-normal tracking-tight border rounded-full px-8 py-3.5 items-center justify-center text-sm hover:text-white text-zinc-300 bg-zinc-900 border-zinc-700/80">
-            <span class="relative z-10 flex items-center gap-2 transition-all duration-500 ease-out group-hover:transform group-hover:translate-y-8 group-hover:opacity-0 group-hover:blur-md">
-              View Portfolio
-              <iconify-icon icon="solar:arrow-right-linear" class="w-4 h-4" style="stroke-width: 1.5;"></iconify-icon>
-            </span>
-            <span class="absolute inset-0 z-10 flex items-center justify-center gap-2 transition-all duration-300 ease-in-out transform -translate-y-8 group-hover:translate-y-0 group-hover:opacity-100 group-hover:blur-none opacity-0 rounded-full blur-md">
-              View Portfolio
-              <iconify-icon icon="solar:arrow-right-linear" class="w-4 h-4" style="stroke-width: 1.5;"></iconify-icon>
-            </span>
-            <span aria-hidden="true" class="absolute bottom-0 left-1/2 h-[1px] w-[70%] -translate-x-1/2 transition-all duration-[1000ms] opacity-0 group-hover:opacity-80 bg-gradient-to-r from-transparent via-neutral-200 to-transparent blur-[2px]"></span>
-            <span aria-hidden="true" class="absolute bottom-0 left-0 right-0 h-[100%] opacity-0 group-hover:opacity-40 transition-all duration-[1000ms] bg-gradient-to-t from-white/20 to-transparent"></span>
-          </button>
-
-          <a href="#contact" class="px-8 py-3.5 rounded-full border bg-transparent text-sm font-normal transition-all duration-300 backdrop-blur-sm border-zinc-800 text-zinc-400 hover:bg-zinc-800/40 hover:text-white">
-            Contact Steven
-          </a>
-        </div>
-      </div>
-      
-      <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40 text-xs tracking-widest uppercase pointer-events-none" aria-hidden="true">
-        <span>Scroll</span>
-        <div class="w-px h-12 bg-gradient-to-b from-zinc-400 via-zinc-400/20 to-transparent"></div>
-      </div>
-    </section>
-
-    <section class="py-24 max-w-7xl mx-auto px-6 md:px-12" id="about" aria-labelledby="about-heading">
-      <div class="mb-16 text-left [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
-        <span class="text-xs uppercase tracking-[0.2em] font-medium text-zinc-500 block mb-2">About</span>
-        <h2 id="about-heading" class="text-3xl md:text-5xl font-medium tracking-tight font-geist text-white/95">The Creative Behind the Stage</h2>
-      </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div class="[animation:animationIn_0.8s_ease-out_0.2s_both] animate-on-scroll">
-          <div class="glass-card p-3 rounded-[2rem] max-w-md mx-auto transform -rotate-2 hover:rotate-0 transition-all duration-700">
-            <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-zinc-900 shadow-inner">
-              <img src="images/profile/IMG_3440.jpg" alt="Steven Mlazi operating a professional lighting console" class="absolute inset-0 w-full h-full object-cover opacity-90" loading="lazy">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+        <div class="lg:col-span-5 animate-on-scroll">
+          <div class="relative aspect-[4/5] rounded-3xl overflow-hidden glass-card p-2">
+            <div class="w-full h-full rounded-[1.25rem] overflow-hidden bg-zinc-900">
+              <img src="images/featured/IMG_3506.jpg" alt="Steven Mlazi controlling production setup console layout" class="w-full h-full object-cover grayscale opacity-75 hover:grayscale-0 hover:scale-105 transition-all duration-700 ease-out">
             </div>
             <div class="glass-highlight"></div>
           </div>
         </div>
-        
-        <div class="flex flex-col gap-6 text-base sm:text-lg text-zinc-400 font-normal leading-relaxed [animation:animationIn_0.8s_ease-out_0.3s_both] animate-on-scroll">
-          <p class="text-white text-xl leading-relaxed">
-            Steven Mlazi is a creative professional specializing in <strong class="text-white font-medium">stage design</strong>, <strong class="text-white font-medium">lighting design</strong>, and <strong class="text-white font-medium">instrumental performance</strong>.
-          </p>
-          <p>
-            His work combines creativity, technical expertise, and performance experience to deliver memorable experiences for audiences and clients. From intimate productions to large-scale live events, Steven brings vision, precision, and passion to every project.
-          </p>
-          <p>
-            Whether crafting atmospheric lighting, designing immersive stage environments, or delivering live instrumental performances, Steven approaches each engagement with the same commitment to excellence that defines his reputation in the industry.
-          </p>
-          <div class="flex flex-wrap gap-2 pt-4" aria-label="Specializations">
-            <span class="px-4 py-1.5 rounded-full text-xs font-medium border border-zinc-800 bg-zinc-900/40 text-zinc-300">Stage Design</span>
-            <span class="px-4 py-1.5 rounded-full text-xs font-medium border border-zinc-800 bg-zinc-900/40 text-zinc-300">Lighting Design</span>
-            <span class="px-4 py-1.5 rounded-full text-xs font-medium border border-zinc-800 bg-zinc-900/40 text-zinc-300">Instrument Performance</span>
+
+        <div class="lg:col-span-7 flex flex-col gap-6 animate-on-scroll">
+          <div>
+            <span class="text-[10px] font-bold tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 uppercase block mb-2">
+              The Creative Director Behind The Desk
+            </span>
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">
+              Designing Visual Soundscapes.
+            </h2>
           </div>
+          <p class="text-base md:text-lg text-zinc-300 leading-relaxed font-light">
+            I bridge the gap between mechanical stage engineering and artistic live expression. Shifting environments across stages worldwide, I shape how audiences experience live sound structures.
+          </p>
+          <p class="text-sm text-zinc-400 leading-relaxed">
+            Every room has a pulse. Whether it's high-contrast dynamic beams for live rock acts or elegant ambient colour washes for intricate architectural installations, my design frameworks establish depth, control memory, and complement sensory output performance arrays flawlessly.
+          </p>
+          
+          <ul class="flex flex-wrap gap-2.5 mt-4">
+            <li class="text-[10px] font-bold uppercase tracking-wider px-4 py-2 border border-purple-500/20 bg-purple-500/5 rounded-full text-zinc-200">Stage Architecture</li>
+            <li class="text-[10px] font-bold uppercase tracking-wider px-4 py-2 border border-purple-500/20 bg-purple-500/5 rounded-full text-zinc-200">DMX Programming</li>
+            <li class="text-[10px] font-bold uppercase tracking-wider px-4 py-2 border border-purple-500/20 bg-purple-500/5 rounded-full text-zinc-200">Live Show Execution</li>
+            <li class="text-[10px] font-bold uppercase tracking-wider px-4 py-2 border border-purple-500/20 bg-purple-500/5 rounded-full text-zinc-200">Atmospheric Engineering</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="relative py-24 md:py-36 bg-zinc-950 overflow-hidden">
+    <div class="ambient-glow-pink bottom-[-10%] right-[-10%]"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 md:mb-24 animate-on-scroll">
+        <span class="text-[10px] font-bold tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 uppercase block mb-2">Capabilities Matrix</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">Production Solutions</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        
+        <article class="glass-card p-8 md:p-10 flex flex-col gap-6 animate-on-scroll">
+          <div class="w-12 h-12 text-fuchsia-400 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-full h-full">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold tracking-tight text-white mb-3">Lighting Design</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">Comprehensive cue programming, beam modeling, and layout design calibrated precisely for massive open arenas or close intimate configurations.</p>
+          </div>
+          <div class="glass-highlight"></div>
+        </article>
+
+        <article class="glass-card p-8 md:p-10 flex flex-col gap-6 animate-on-scroll">
+          <div class="w-12 h-12 text-fuchsia-400 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-full h-full">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 4.5v15m6-15v15m-10.5-3h15m-15-9h15" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold tracking-tight text-white mb-3">Stage Scenography</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">Structural design configurations arranging stage set objects, dynamic digital set pieces, and lighting arrays to map maximum production space geometry.</p>
+          </div>
+          <div class="glass-highlight"></div>
+        </article>
+
+        <article class="glass-card p-8 md:p-10 flex flex-col gap-6 animate-on-scroll">
+          <div class="w-12 h-12 text-fuchsia-400 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="w-full h-full">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold tracking-tight text-white mb-3">Live Integration</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">Flawless, direct manual control oversight for variable live programs. On-the-fly timing adjustments built to execute alongside performance changes.</p>
+          </div>
+          <div class="glass-highlight"></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="relative py-24 md:py-36 bg-zinc-900/10 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 animate-on-scroll">
+        <div>
+          <span class="text-[10px] font-bold tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 uppercase block mb-2">Curated Project Galleries</span>
+          <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">Production Works</h2>
+        </div>
+        
+        <div class="flex flex-wrap gap-2 portfolio-filters" role="tablist">
+          <button data-filter="all" class="filter-btn text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-zinc-800 bg-white/10 text-white transition-all duration-300 cursor-pointer">All Work</button>
+          <button data-filter="lighting-design" class="filter-btn text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300 cursor-pointer">Lighting</button>
+          <button data-filter="stage-design" class="filter-btn text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300 cursor-pointer">Stage Sets</button>
+          <button data-filter="instrument-performance" class="filter-btn text-[10px] font-bold uppercase tracking-wider px-5 py-2.5 rounded-full border border-zinc-800 text-zinc-400 transition-all duration-300 cursor-pointer">Performance</button>
         </div>
       </div>
-    </section>
 
-    <section class="py-24 max-w-7xl mx-auto px-6 md:px-12" id="services" aria-labelledby="services-heading">
-      <div class="mb-16 text-left [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
-        <span class="text-xs uppercase tracking-[0.2em] font-medium text-zinc-500 block mb-2">Services</span>
-        <h2 id="services-heading" class="text-3xl md:text-5xl font-medium tracking-tight font-geist text-white/95">What I Do</h2>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <article class="glass-card p-1.5 flex flex-col group hover:scale-[1.02] transition-all duration-500 ease-out [animation:animationIn_0.8s_ease-out_0.2s_both] animate-on-scroll">
-          <div class="h-48 rounded-[1.25rem] bg-[#131316] border border-white/5 flex items-center justify-center relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_60%)]"></div>
-            <div class="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-white transition-colors">
-              <i data-lucide="layers" class="w-5 h-5" stroke-width="1.5"></i>
+      <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        </div>
+
+    </div>
+  </section>
+
+  <section id="contact" class="relative py-24 md:py-36 bg-zinc-950 overflow-hidden">
+    <div class="ambient-glow-purple top-1/3 right-[-10%]"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <div class="lg:col-span-5 flex flex-col gap-8 animate-on-scroll">
+          <div>
+            <span class="text-[10px] font-bold tracking-[0.25em] text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 uppercase block mb-2">Project Intake Channel</span>
+            <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white">Let's Ignite Your Stage.</h2>
+          </div>
+          <p class="text-sm md:text-base text-zinc-400 leading-relaxed font-light">
+            Planning a national tour cycle, an corporate visual installation, or need precise technical operation mapping setup support? File your system telemetry criteria here to initialize a consultation window.
+          </p>
+
+          <div class="flex flex-col gap-4">
+            <div>
+              <span class="text-[9px] uppercase font-bold tracking-wider text-fuchsia-400 block mb-1">Direct Link Pipeline</span>
+              <a href="mailto:steventshefati@outlook.com" class="text-lg text-white font-medium hover:text-purple-400 transition-colors">steventshefati@outlook.com</a>
             </div>
-          </div>
-          <div class="px-6 py-6 flex flex-col gap-2">
-            <h3 class="text-xl font-medium tracking-tight font-geist text-white">Stage Design</h3>
-            <p class="text-sm font-normal text-zinc-400 leading-relaxed">Planning and designing engaging stage environments for events, productions, and performances.</p>
-          </div>
-          <div class="glass-highlight"></div>
-        </article>
-
-        <article class="glass-card p-1.5 flex flex-col group hover:scale-[1.02] transition-all duration-500 ease-out [animation:animationIn_0.8s_ease-out_0.3s_both] animate-on-scroll">
-          <div class="h-48 rounded-[1.25rem] bg-[#131316] border border-white/5 flex items-center justify-center relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_60%)]"></div>
-            <div class="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-white transition-colors">
-              <i data-lucide="sun" class="w-5 h-5" stroke-width="1.5"></i>
-            </div>
-          </div>
-          <div class="px-6 py-6 flex flex-col gap-2">
-            <h3 class="text-xl font-medium tracking-tight font-geist text-white">Lighting Design</h3>
-            <p class="text-sm font-normal text-zinc-400 leading-relaxed">Creating lighting concepts that enhance atmosphere, visual impact, and audience experience.</p>
-          </div>
-          <div class="glass-highlight"></div>
-        </article>
-
-        <article class="glass-card p-1.5 flex flex-col group hover:scale-[1.02] transition-all duration-500 ease-out [animation:animationIn_0.8s_ease-out_0.4s_both] animate-on-scroll">
-          <div class="h-48 rounded-[1.25rem] bg-[#131316] border border-white/5 flex items-center justify-center relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_60%)]"></div>
-            <div class="w-12 h-12 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 group-hover:text-white transition-colors">
-              <i data-lucide="music" class="w-5 h-5" stroke-width="1.5"></i>
-            </div>
-          </div>
-          <div class="px-6 py-6 flex flex-col gap-2">
-            <h3 class="text-xl font-medium tracking-tight font-geist text-white">Instrument Performance</h3>
-            <p class="text-sm font-normal text-zinc-400 leading-relaxed">Professional instrumental performances for live events, productions, and entertainment experiences.</p>
-          </div>
-          <div class="glass-highlight"></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="py-24 max-w-7xl mx-auto px-6 md:px-12" id="featured" aria-labelledby="featured-heading">
-      <div class="glass-card p-2 rounded-[2.5rem] relative overflow-hidden [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-7 rounded-[2rem] overflow-hidden aspect-[16/10] relative bg-zinc-900">
-            <img src="images/featured/IMG_3506.jpg" alt="Live concert performance under dramatic blue stage lighting" class="absolute inset-0 w-full h-full object-cover opacity-85" loading="lazy">
-            <div class="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent lg:block hidden"></div>
-          </div>
-          <div class="lg:col-span-5 p-6 lg:p-8 flex flex-col gap-4 relative z-20">
-            <span class="text-xs uppercase tracking-[0.2em] font-medium text-zinc-500">Featured Project</span>
-            <h2 id="featured-heading" class="text-2xl md:text-4xl font-medium tracking-tight font-geist text-white">Live Concert Experience</h2>
-            <p class="text-sm md:text-base font-normal text-zinc-400 leading-relaxed">A full-scale live production combining dynamic stage lighting, atmospheric design, and live instrumental performance — delivering an immersive experience that connects artist and audience through light, sound, and presence.</p>
-            <div class="pt-4">
-              <a href="#portfolio" class="px-6 py-3 rounded-full border border-zinc-800 bg-zinc-900 text-sm font-medium text-zinc-300 hover:text-white hover:bg-zinc-800/60 transition-all duration-300 inline-flex items-center gap-2">
-                Explore More Work
-                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            
+            <div class="mt-4">
+              <a href="https://wa.me/27763704257" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider rounded-full transition-all shadow-[0_4px_20px_rgba(16,185,129,0.2)]">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.456L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.863-9.864.001-2.636-1.023-5.115-2.884-6.978C16.584 1.9 14.108.879 11.474.879c-5.443 0-9.869 4.42-9.873 9.863-.001 1.731.464 3.42 1.345 4.925l-.993 3.623 3.704-.971zm12.167-7.61c-.302-.15-1.787-.882-2.063-.982-.276-.1-.477-.15-.677.15-.199.299-.775.982-.95 1.183-.175.2-.351.224-.652.074-.302-.15-1.274-.469-2.427-1.496-.897-.8-1.502-1.788-1.678-2.088-.175-.302-.019-.465.131-.615.136-.135.302-.35.453-.524.151-.174.2-.299.301-.498.101-.2.05-.375-.025-.524-.075-.15-.677-1.633-.927-2.233-.243-.585-.49-.507-.677-.516-.174-.008-.375-.01-.576-.01-.2 0-.527.075-.803.375-.276.3-1.054 1.03-1.054 2.515s1.079 2.917 1.229 3.116c.15.2 2.123 3.242 5.143 4.545.718.311 1.279.497 1.717.637.722.23 1.378.198 1.9.12.58-.087 1.787-.73 2.038-1.436.25-.706.25-1.313.175-1.437-.075-.124-.275-.199-.576-.35z"/>
+                </svg>
+                WhatsApp Connection
               </a>
             </div>
           </div>
         </div>
-        <div class="glass-highlight"></div>
-      </div>
-    </section>
 
-    <section class="py-24 max-w-7xl mx-auto px-6 md:px-12" id="portfolio" aria-labelledby="portfolio-heading">
-      <div class="mb-16 text-left [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
-        <span class="text-xs uppercase tracking-[0.2em] font-medium text-zinc-500 block mb-2">Portfolio</span>
-        <h2 id="portfolio-heading" class="text-3xl md:text-5xl font-medium tracking-tight font-geist text-white/95">Selected Work</h2>
-      </div>
-      
-      <div class="flex flex-wrap gap-2 mb-12 p-1.5 max-w-3xl rounded-full bg-zinc-900/40 border border-white/5 backdrop-blur-sm [animation:animationIn_0.8s_ease-out_0.2s_both] animate-on-scroll" role="tablist" aria-label="Filter portfolio by category">
-        <button class="filter-btn active px-5 py-2 text-xs md:text-sm font-medium rounded-full bg-white/10 text-white transition-all duration-300" type="button" data-filter="all" role="tab" aria-selected="true">All</button>
-        <button class="filter-btn px-5 py-2 text-xs md:text-sm font-medium rounded-full text-zinc-400 hover:text-zinc-200 transition-all duration-300" type="button" data-filter="stage-design" role="tab" aria-selected="false">Stage Design</button>
-        <button class="filter-btn px-5 py-2 text-xs md:text-sm font-medium rounded-full text-zinc-400 hover:text-zinc-200 transition-all duration-300" type="button" data-filter="lighting-design" role="tab" aria-selected="false">Lighting Design</button>
-        <button class="filter-btn px-5 py-2 text-xs md:text-sm font-medium rounded-full text-zinc-400 hover:text-zinc-200 transition-all duration-300" type="button" data-filter="instrument-performance" role="tab" aria-selected="false">Instrument Performance</button>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500" id="portfolio-grid" role="list">
-        </div>
-    </section>
-
-    <section class="py-24 max-w-7xl mx-auto px-6 md:px-12" id="social" aria-labelledby="social-heading">
-      <div class="glass-card p-8 md:p-16 rounded-[2.5rem] relative overflow-hidden text-center [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
-        <h2 id="social-heading" class="text-2xl md:text-4xl font-medium tracking-tight font-geist text-white/95 max-w-2xl mx-auto mb-4">Find Steven Mlazi on all social platforms.</h2>
-        <p class="text-sm tracking-wider uppercase text-zinc-500 font-medium mb-12">Steven Mlazi</p>
-        
-        <ul class="flex flex-wrap items-center justify-center gap-4">
-          <li>
-            <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full border border-zinc-800/80 bg-zinc-900/50 hover:bg-zinc-800 hover:text-white transition-all text-sm font-medium text-zinc-400 flex items-center gap-2" aria-label="Steven Mlazi on Facebook">
-              <iconify-icon icon="ri:facebook-fill" width="16"></iconify-icon>
-              <span>Facebook</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full border border-zinc-800/80 bg-zinc-900/50 hover:bg-zinc-800 hover:text-white transition-all text-sm font-medium text-zinc-400 flex items-center gap-2" aria-label="Steven Mlazi on Instagram">
-              <iconify-icon icon="ri:instagram-line" width="16"></iconify-icon>
-              <span>Instagram</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://tiktok.com/" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full border border-zinc-800/80 bg-zinc-900/50 hover:bg-zinc-800 hover:text-white transition-all text-sm font-medium text-zinc-400 flex items-center gap-2" aria-label="Steven Mlazi on TikTok">
-              <iconify-icon icon="ri:tiktok-fill" width="16"></iconify-icon>
-              <span>TikTok</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full border border-zinc-800/80 bg-zinc-900/50 hover:bg-zinc-800 hover:text-white transition-all text-sm font-medium text-zinc-400 flex items-center gap-2" aria-label="Steven Mlazi on YouTube">
-              <iconify-icon icon="ri:youtube-fill" width="16"></iconify-icon>
-              <span>YouTube</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-full border border-zinc-800/80 bg-zinc-900/50 hover:bg-zinc-800 hover:text-white transition-all text-sm font-medium text-zinc-400 flex items-center gap-2" aria-label="Steven Mlazi on LinkedIn">
-              <iconify-icon icon="ri:linkedin-fill" width="16"></iconify-icon>
-              <span>LinkedIn</span>
-            </a>
-          </li>
-        </ul>
-        <div class="glass-highlight"></div>
-      </div>
-    </section>
-
-    <section class="py-24 max-w-7xl mx-auto px-6 md:px-12" id="contact" aria-labelledby="contact-heading">
-      <div class="mb-16 text-left [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
-        <span class="text-xs uppercase tracking-[0.2em] font-medium text-zinc-500 block mb-2">Contact</span>
-        <h2 id="contact-heading" class="text-3xl md:text-5xl font-medium tracking-tight font-geist text-white/95">Let's Create Something Memorable</h2>
-      </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        <div class="lg:col-span-5 flex flex-col gap-8 [animation:animationIn_0.8s_ease-out_0.2s_both] animate-on-scroll">
-          <div class="glass-card p-6 rounded-2xl relative">
-            <span class="text-xs text-zinc-500 font-medium uppercase tracking-wider block mb-1">Email</span>
-            <a href="mailto:steventshefati@outlook.com" class="text-lg font-medium text-white hover:underline">steventshefati@outlook.com</a>
-          </div>
-          <div class="glass-card p-6 rounded-2xl relative">
-            <span class="text-xs text-zinc-500 font-medium uppercase tracking-wider block mb-1">Phone</span>
-            <a href="tel:+27792255230" class="text-lg font-medium text-white hover:underline">079 225 5230</a>
-          </div>
-          
-          <div class="flex flex-col gap-3 pt-4">
-            <a href="https://wa.me/27792255230" class="w-full py-4 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 font-medium text-sm transition-all duration-300 flex items-center justify-center gap-2" target="_blank" rel="noopener noreferrer">
-              <iconify-icon icon="ri:whatsapp-line" width="18"></iconify-icon>
-              WhatsApp Steven
-            </a>
-            <div class="grid grid-cols-2 gap-3">
-              <a href="mailto:steventshefati@outlook.com" class="py-3.5 rounded-full border border-zinc-800 bg-zinc-900/40 text-center font-medium text-sm text-zinc-300 hover:text-white hover:bg-zinc-800/60 transition-all">Send Email</a>
-              <a href="tel:+27792255230" class="py-3.5 rounded-full border border-zinc-800 bg-zinc-900/40 text-center font-medium text-sm text-zinc-300 hover:text-white hover:bg-zinc-800/60 transition-all">Call Now</a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="lg:col-span-7 [animation:animationIn_0.8s_ease-out_0.3s_both] animate-on-scroll">
-          <form class="glass-card p-8 rounded-3xl flex flex-col gap-6 relative" id="contact-form" action="mailto:steventshefati@outlook.com" method="post" enctype="text/plain">
-            <div class="flex flex-col gap-2">
-              <label for="name" class="text-xs text-zinc-400 font-medium uppercase tracking-wider">Name</label>
-              <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your name" class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3.5 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition-all text-sm">
-            </div>
-            <div class="flex flex-col gap-2">
-              <label for="email" class="text-xs text-zinc-400 font-medium uppercase tracking-wider">Email</label>
-              <input type="email" id="email" name="email" required autocomplete="email" placeholder="your@email.com" class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3.5 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition-all text-sm">
-            </div>
-            <div class="flex flex-col gap-2">
-              <label for="message" class="text-xs text-zinc-400 font-medium uppercase tracking-wider">Message</label>
-              <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project..." class="w-full bg-zinc-900/60 border border-zinc-800 rounded-xl px-4 py-3.5 text-white placeholder-zinc-600 focus:outline-none focus:border-zinc-600 transition-all text-sm resize-none"></textarea>
+        <div class="lg:col-span-7 w-full animate-on-scroll">
+          <form id="contact-form" class="glass-card p-6 sm:p-10 flex flex-col gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div class="flex flex-col gap-2">
+                <label for="name" class="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Identity Name</label>
+                <input type="text" id="name" required placeholder="e.g. John Doe" class="w-full bg-zinc-950/60 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
+              </div>
+              <div class="flex flex-col gap-2">
+                <label for="email" class="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Digital Email Pipeline</label>
+                <input type="email" id="email" required placeholder="name@domain.com" class="w-full bg-zinc-950/60 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all">
+              </div>
             </div>
             
-            <button type="submit" class="w-full py-4 bg-white text-black hover:bg-zinc-200 rounded-full font-medium tracking-tight text-sm transition-all duration-300 mt-2">
-              Send Message
+            <div class="flex flex-col gap-2">
+              <label for="message" class="text-[10px] font-bold uppercase tracking-wider text-zinc-400">Project Telemetry Specifications</label>
+              <textarea id="message" required rows="5" placeholder="Outline your technical production timeline context..." class="w-full bg-zinc-950/60 border border-zinc-800 rounded-xl px-4 py-3.5 text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all resize-none"></textarea>
+            </div>
+
+            <button type="submit" class="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs uppercase tracking-widest rounded-xl hover:opacity-95 shadow-[0_4px_25px_rgba(168,85,247,0.25)] transition-all cursor-pointer">
+              Launch Request Transmission
             </button>
             <div class="glass-highlight"></div>
           </form>
         </div>
-      </div>
-    </section>
-  </main>
 
-  <footer class="border-t border-white/5 bg-black/40 relative z-10 py-16">
-    <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-      <div class="flex flex-col gap-2">
-        <p class="text-lg font-geist font-medium text-white">Steven Mlazi</p>
-        <p class="text-sm text-zinc-500 font-normal leading-relaxed">Creative Stage &amp; Lighting Professional</p>
       </div>
-      <nav class="flex flex-col gap-4" aria-label="Footer quick links">
-        <p class="text-xs font-medium uppercase tracking-wider text-zinc-400">Quick Links</p>
-        <ul class="flex flex-col gap-2.5 text-sm font-normal text-zinc-500">
-          <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
-          <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
-          <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
-          <li><a href="#portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
-          <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
-        </ul>
-      </nav>
-      <nav class="flex flex-col gap-4" aria-label="Footer social links">
-        <p class="text-xs font-medium uppercase tracking-wider text-zinc-400">Social Links</p>
-        <ul class="flex flex-col gap-2.5 text-sm font-normal text-zinc-500">
-          <li><a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Facebook</a></li>
-          <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram</a></li>
-          <li><a href="https://tiktok.com/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">TikTok</a></li>
-          <li><a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">YouTube</a></li>
-          <li><a href="https://linkedin.com/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a></li>
-        </ul>
-      </nav>
     </div>
-    
-    <div class="max-w-7xl mx-auto px-6 md:px-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-normal text-zinc-500">
-      <p>&copy; <span id="year"></span> Steven Mlazi. All rights reserved.</p>
-      <p>
-        Developed by
-        <a href="https://palexdigital.github.io/paleX-linkhub/" class="text-zinc-400 hover:text-white transition-colors font-medium" target="_blank" rel="noopener noreferrer" aria-label="Developed by paléX — visit paléX linkhub">paléX</a>
-      </p>
+  </section>
+
+  <footer class="border-t border-zinc-900 bg-zinc-950 py-12 relative z-20">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <div>
+        <p class="text-sm font-bold text-white tracking-wide">Steven Mlazi</p>
+        <p class="text-xs text-zinc-500 mt-1">Atmospheric Production Architecture &copy; <span id="year"></span></p>
+      </div>
+      
+      <div class="flex gap-6 text-xs font-medium text-zinc-500">
+        <a href="#home" class="hover:text-white transition-colors">Top</a>
+        <a href="#about" class="hover:text-white transition-colors">Bio</a>
+        <a href="#services" class="hover:text-white transition-colors">Matrix</a>
+        <a href="#portfolio" class="hover:text-white transition-colors">Works</a>
+      </div>
     </div>
   </footer>
 
-  <div class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md items-center justify-center flex p-4" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
-    <button class="absolute top-6 right-6 text-zinc-400 hover:text-white transition-colors text-3xl font-light p-2" id="lightbox-close" type="button" aria-label="Close image viewer">&times;</button>
-    <button class="absolute left-6 text-zinc-400 hover:text-white transition-colors text-4xl font-light p-2" id="lightbox-prev" type="button" aria-label="Previous image">&#8249;</button>
-    <button class="absolute right-6 text-zinc-400 hover:text-white transition-colors text-4xl font-light p-2" id="lightbox-next" type="button" aria-label="Next image">&#8250;</button>
+  <div id="lightbox" class="hidden fixed inset-0 z-[10000] bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center p-4 sm:p-8" style="display: none;" role="dialog" aria-modal="true">
+    <button id="lightbox-close" aria-label="Terminate interface window display view" class="absolute top-6 right-6 text-zinc-400 hover:text-white text-3xl p-3 focus:outline-none cursor-pointer">&times;</button>
     
-    <figure class="max-w-4xl max-h-[85vh] flex flex-col items-center justify-center">
-      <img src="" alt="" id="lightbox-img" class="max-w-full max-h-[75vh] object-contain rounded-lg border border-white/10 shadow-2xl">
-      <figcaption id="lightbox-caption" class="text-zinc-400 text-sm font-normal text-center mt-4 max-w-xl"></figcaption>
+    <button id="lightbox-prev" aria-label="Preceding asset view context step" class="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white text-4xl p-4 focus:outline-none cursor-pointer">&lsaquo;</button>
+    <button id="lightbox-next" aria-label="Succeeding asset view context step" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-white text-4xl p-4 focus:outline-none cursor-pointer">&rsaquo;</button>
+    
+    <figure class="max-w-5xl max-h-[80vh] flex flex-col items-center justify-center">
+      <img id="lightbox-img" src="" alt="" class="max-h-[70vh] w-auto object-contain rounded-lg shadow-2xl border border-zinc-800">
+      <figcaption id="lightbox-caption" class="text-zinc-400 text-sm font-medium tracking-tight mt-4 text-center"></figcaption>
     </figure>
   </div>
 
-  <script src="script.js"></script>
   <script>
-    // Initialize Lucide vector graphics engines
-    lucide.createIcons();
+    document.addEventListener('DOMContentLoaded', () => {
+      // Setup Dynamic Footer Year Hook
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Mobile Menu Hamburger Toggle Interface Matrix
+      const toggleBtn = document.getElementById('nav-toggle');
+      const menuOverlay = document.getElementById('nav-menu');
+      if (toggleBtn && menuOverlay) {
+        toggleBtn.addEventListener('click', () => {
+          const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+          toggleBtn.setAttribute('aria-expanded', !isOpen);
+          menuOverlay.classList.toggle('hidden');
+          
+          // Animate lines
+          const spans = toggleBtn.querySelectorAll('span');
+          if(!isOpen) {
+            spans[0].style.transform = 'translateY(8px) rotate(45deg)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+          } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+          }
+        });
+
+        // Close menu on link select click
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+          link.addEventListener('click', () => {
+            toggleBtn.setAttribute('aria-expanded', 'false');
+            menuOverlay.classList.add('hidden');
+            toggleBtn.querySelectorAll('span').forEach(s => s.style.transform = 'none');
+            toggleBtn.querySelectorAll('span')[1].style.opacity = '1';
+          });
+        });
+      }
+
+      // Scroll Header Dynamics & Reveal Intersection Handlers
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('bg-black/80', 'border-b', 'border-zinc-900');
+        } else {
+          header.classList.remove('bg-black/80', 'border-b', 'border-zinc-900');
+        }
+      });
+
+      const revealElements = document.querySelectorAll('.animate-on-scroll');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // Mock Local Sample Array Dataset to Test Grid Processing
+      const projects = [
+        { title: 'Neon Horizon Arena Tour', category: 'lighting-design', img: 'images/portfolio/project1.jpg' },
+        { title: 'Symmetry Stage Set Blueprint', category: 'stage-design', img: 'images/portfolio/project2.jpg' },
+        { title: 'Kinetic Light Array Cluster', category: 'lighting-design', img: 'images/portfolio/project3.jpg' },
+        { title: 'Sub-Sonic Bass Resonance Performance', category: 'instrument-performance', img: 'images/portfolio/project4.jpg' }
+      ];
+
+      const gridContainer = document.getElementById('portfolio-grid');
+      let currentActiveIndex = 0;
+      let activeFilterSet = [];
+
+      function renderGrid(filterName = 'all') {
+        if (!gridContainer) return;
+        gridContainer.innerHTML = '';
+        activeFilterSet = filterName === 'all' ? projects : projects.filter(p => p.category === filterName);
+        
+        activeFilterSet.forEach((proj, idx) => {
+          const card = document.createElement('article');
+          card.className = 'portfolio-item glass-card p-3 group cursor-pointer';
+          card.innerHTML = `
+            <div class="relative overflow-hidden rounded-2xl aspect-video bg-zinc-900">
+              <img src="${proj.img}" alt="${proj.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 transition-opacity"></div>
+            </div>
+            <div class="mt-4 px-2 pb-2">
+              <p class="text-[10px] uppercase tracking-widest text-fuchsia-400 font-bold">${proj.category.replace('-', ' ')}</p>
+              <h4 class="text-base font-bold text-white tracking-tight mt-1">${proj.title}</h4>
+            </div>
+            <div class="glass-highlight"></div>
+          `;
+          card.addEventListener('click', () => launchLightbox(idx));
+          gridContainer.appendChild(card);
+        });
+      }
+
+      // Initialize Grid Layout Mount Phase
+      renderGrid();
+
+      // Connect Filter Function Buttons
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('bg-white/10', 'text-white'));
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('text-zinc-400'));
+          e.currentTarget.classList.add('bg-white/10', 'text-white');
+          renderGrid(e.currentTarget.getAttribute('data-filter'));
+        });
+      });
+
+      // Secure Lightbox Interlocking System Window Module
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+
+      function launchLightbox(idx) {
+        if (!lightbox || activeFilterSet.length === 0) return;
+        currentActiveIndex = idx;
+        lightboxImg.src = activeFilterSet[currentActiveIndex].img;
+        lightboxCaption.textContent = activeFilterSet[currentActiveIndex].title;
+        lightbox.classList.remove('hidden');
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        if (!lightbox) return;
+        lightbox.classList.add('hidden');
+        lightbox.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+
+      document.getElementById('lightbox-close')?.addEventListener('click', closeLightbox);
+      
+      document.getElementById('lightbox-next')?.addEventListener('click', () => {
+        currentActiveIndex = (currentActiveIndex + 1) % activeFilterSet.length;
+        launchLightbox(currentActiveIndex);
+      });
+
+      document.getElementById('lightbox-prev')?.addEventListener('click', () => {
+        currentActiveIndex = (currentActiveIndex - 1 + activeFilterSet.length) % activeFilterSet.length;
+        launchLightbox(currentActiveIndex);
+      });
+
+      lightbox?.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+    });
   </script>
 </body>
 </html>
